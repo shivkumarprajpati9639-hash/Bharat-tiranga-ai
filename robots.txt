@@ -1,0 +1,13 @@
+<!-- नाम छुपा दिया, अब पूछने पर ही आएगा -->
+<script>
+  const ownerName = "Shiv Kumar Prajapati";
+  
+  // पुराना जवाब देने वाला function ढूंढो और ये logic डालो
+  function checkOwnerQuestion(question) {
+    question = question.toLowerCase();
+    if (question.includes("kisne banaya") || question.includes("owner") || question.includes("who made") || question.includes("creator") || question.includes("banaya kisne") || question.includes("malik kaun")) {
+      return "Is Bharat Tiranga AI ko " + ownerName + " ne banaya hai 🇮🇳";
+    }
+    return null; // बाकी सवालों पर नाम नहीं आएगा
+  }
+</script>
