@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Tiranga AI - Ultimate Sovereign Ecosystem & Sentence Maker</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #202124;
+            --box-bg: #ffffff;
+            --border-color: #dfe1e5;
+            --shadow: 0 1px 6px rgba(32,33,36,.15);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #202124;
+            --text-color: #e8eaed;
+            --box-bg: #303134;
+            --border-color: #5f6368;
+            --shadow: 0 1px 6px rgba(0,0,0,.4);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        .status-bar {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .app-header {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            padding: 10px 20px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        h1.logo-text {
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            text-align: left;
+        }
+        .b-saffron { color: #FF9933; }
+        .b-dark { color: #138808; }
+        [data-theme="dark"] .b-dark { color: #2ecc71; }
+        .b-ai { color: #4285F4; font-size: 1.3rem; vertical-align: super; }
+
+        .chakra-icon {
+            width: 45px;
+            height: 45px;
+            animation: rotateChakra 15s linear infinite;
+        }
+        @keyframes rotateChakra {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 0 16px;
+            margin-top: 8px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 0 16px;
+            height: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box svg.s-icon {
+            width: 20px;
+            height: 20px;
+            fill: #70757a;
+            margin-right: 12px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .search-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pills-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            gap: 10px;
+            padding: 12px 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .pills-container::-webkit-scrollbar { display: none; }
+
+        .pill {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .pill.ai-pill {
+            background: #e8f0fe;
+            color: #1967d2;
+            border-color: #d2e3fc;
+        }
+        [data-theme="dark"] .pill.ai-pill {
+            background: #3c4043;
+            color: #8ab4f8;
+            border-color: #5f6368;
+        }
+
+        .widgets-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            gap: 12px;
+            padding: 0 16px;
+            margin-top: 4px;
+        }
+
+        .widget-card {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px;
+            flex: 1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 12px;
+            color: #70757a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .widget-body {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .widget-sub {
+            font-size: 11px;
+            color: #138808;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+
+        .main-content-area {
+            width: 100%;
+            max-width: 480px;
+            padding: 0 16px;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card-box {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-messages {
+            height: 180px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-right: 5px;
+        }
+        .chat-msg {
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 85%;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .msg-user { background: #e8f0fe; color: #1a73e8; align-self: flex-end; }
+        [data-theme="dark"] .msg-user { background: #3c4043; color: #8ab4f8; }
+        .msg-ai { background: #f1f3f4; color: var(--text-color); align-self: flex-start; }
+        [data-theme="dark"] .msg-ai { background: #303134; }
+
+        .chat-input-row {
+            display: flex;
+            gap: 8px;
+        }
+        .chat-input-row input {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 14px;
+            outline: none;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .chat-input-row button {
+            background: #138808;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .sentence-maker-box {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sentence-maker-box select, .sentence-maker-box textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 14px;
+            outline: none;
+        }
+        .gen-sentence-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--box-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #70757a;
+            font-size: 12px;
+            gap: 4px;
+        }
+
+        .nav-item.active {
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        .nav-item.active .nav-bg-icon {
+            background: #d2e3fc;
+            border-radius: 16px;
+            padding: 2px 16px;
+        }
+        [data-theme="dark"] .nav-item.active .nav-bg-icon {
+            background: #3c4043;
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .download-btn-fixed {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background: #1a73e8;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 24px;
+            border: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1100;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="status-bar">
+        <span id="currentTime">12:22 PM</span>
+        <span>🇮🇳 Bharat Tiranga AI (400 Tools Core)</span>
+        <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:14px;" title="थीम बदलें">🌓</button>
+    </div>
+
+    <div class="app-header">
+        <div class="logo-box">
+            <h1 class="logo-text">
+                <span class="b-saffron">BHARAT</span><br>
+                <span class="b-dark">TIRANGA</span>
+            </h1>
+            <svg class="chakra-icon" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="120" cy="120" r="110" fill="none" stroke="#000080" stroke-width="8"/>
+                <circle cx="120" cy="120" r="20" fill="#000080"/>
+                <g stroke="#000080" stroke-width="4">
+                    <line x1="120" y1="20" x2="120" y2="220"/>
+                    <line x1="20" y1="120" x2="220" y2="120"/>
+                    <line x1="49.29" y1="49.29" x2="190.71" y2="190.71"/>
+                    <line x1="49.29" y1="190.71" x2="190.71" y2="49.29"/>
+                    <line x1="29.29" y1="75" x2="210.71" y2="165"/>
+                    <line x1="29.29" y1="165" x2="210.71" y2="75"/>
+                    <line x1="75" y1="29.29" x2="165" y2="210.71"/>
+                    <line x1="165" y1="29.29" x2="75" y2="210.71"/>
+                </g>
+            </svg>
+            <span class="b-ai">AI</span>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <svg class="s-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="searchInput" placeholder="400 टूल्स में खोजें (उदा: Pixel 11, GSoC, Gemini Omni)..." onkeypress="handleKey(event)">
+            <div class="search-actions">
+                <button class="icon-btn" onclick="triggerMic()" title="Voice Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="#34A853" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
+                <button class="icon-btn" onclick="triggerLens()" title="Google Lens">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/><path fill="#4285F4" d="M4 5l1.83-2h12.34L20 5H4z"/><path fill="#FBBC05" d="M20 7v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V7h16z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pills-container">
+        <div class="pill ai-pill" onclick="switchMainView('chat')">✨ AI Assistant</div>
+        <div class="pill" onclick="triggerModule('sso')">🔐 SSO & Single Account</div>
+        <div class="pill" onclick="triggerModule('crawler')">🕷️ Web Crawler</div>
+        <div class="pill" onclick="triggerModule('omni')">🤖 Gemini Omni</div>
+        <div class="pill" onclick="triggerModule('pixel')">📱 Pixel 11 Pro Fold</div>
+    </div>
+
+    <div class="widgets-container">
+        <div class="widget-card">
+            <div class="widget-title"><span>Bahjoi, Sambhal</span> <span>🇮🇳</span></div>
+            <div class="widget-body">400 Tools <span style="font-size:13px; font-weight:normal; color:#138808;">100% Synced</span></div>
+            <div class="widget-sub">● सिंगल अकाउंट आर्किटेक्चर सक्रिय</div>
+        </div>
+        <div class="widget-card" onclick="triggerUPI()" style="cursor: pointer;">
+            <div class="widget-title"><span>UPI International</span> <span>⚡</span></div>
+            <div class="widget-body" style="font-size: 15px; color: #1a73e8;">पेमेंट एक्टिवेट करें</div>
+            <div class="widget-sub" style="color:#138808;">सुरक्षित लेन-देन</div>
+        </div>
+    </div>
+
+    <div class="main-content-area" id="mainDynamicArea">
+        <div class="card-box">
+            <h3 style="margin-top:0; color:#1a0dab; font-size: 15px;">💬 Bharat Tiranga AI & Sentence Maker</h3>
+            <div class="chat-messages" id="chatBox">
+                <div class="chat-msg msg-ai">नमस्ते शिव कुमार जी! आपके 400 टूल्स, GSoC, Google Cloud Learning Path और Sentence Maker मॉड्यूल को एक ही फाइल में सिंक कर दिया गया है।</div>
+            </div>
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="यहाँ कुछ भी पूछें..." onkeypress="handleChatKey(event)">
+                <button onclick="sendChatMessage()">भेजें</button>
+            </div>
+        </div>
+
+        <div class="card-box">
+            <h3 style="margin-top:0; color:#1a73e8; font-size: 15px;">📝 AI Sentence Maker (वाक्य निर्माता)</h3>
+            <div class="sentence-maker-box">
+                <select id="sentenceTheme" onchange="updateSentenceTemplate()">
+                    <option value="tech">विषय: भारत का AI टेक साम्राज्य और 400 टूल्स</option>
+                    <option value="cloud">विषय: गूगल क्लाउड और सॉवरेन डेटाबेस</option>
+                    <option value="ai">विषय: Gemini Omni और एजेंटिक AI</option>
+                </select>
+                <textarea id="generatedSentenceOutput" rows="2" readonly>शिव कुमार (बहजोई, संभल) के नेतृत्व में भारत का अपना 'Bharat Tiranga AI' साम्राज्य 400 टूल्स और सिंगल अकाउंट आर्किटेक्चर के साथ दुनिया बदल रहा है।</textarea>
+                <button class="gen-sentence-btn" onclick="createNewSentence()">नया वाक्य बनाएं</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="download-btn-fixed" onclick="downloadUltimateFile()">
+        📥 अल्टीमेट मास्टर फाइल डाउनलोड (.html)
+    </button>
+
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchNavTab(this, 'home')">
+            <span class="nav-bg-icon">🏠</span>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" onclick="switchNavTab(this, 'search')">
+            <span>🔍</span>
+            <span>Search</span>
+        </button>
+        <button class="nav-item" onclick="switchNavTab(this, 'notif')">
+            <span>🔔</span>
+            <span>Alerts</span>
+        </button>
+        <button class="nav-item" onclick="switchNavTab(this, 'activity')">
+            <span>⏱️</span>
+            <span>Activity</span>
+        </button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const cur = html.getAttribute("data-theme");
+            html.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+        }
+
+        function executeSearch() {
+            const val = document.getElementById('searchInput').value.trim();
+            const area = document.getElementById('mainDynamicArea');
+            if(!val) return;
+            area.innerHTML = `
+                <div class="card-box" style="border-color: #1a73e8;">
+                    <h3 style="margin-top:0; color:#1a0dab;">🔍 400-Tools Search Result: ${val}</h3>
+                    <p><b>Single Account Architecture:</b> "${val}" को आपके संपूर्ण सिस्टम और डेटाबेस के साथ सिंक कर दिया गया है। संस्थापक: शिव कुमार (बहजोई, संभल)।</p>
+                </div>
+            `;
+        }
+
+        function handleKey(e) {
+            if(e.key === 'Enter') executeSearch();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            const chatBox = document.getElementById('chatBox');
+            const userDiv = document.createElement('div');
+            userDiv.className = 'chat-msg msg-user';
+            userDiv.textContent = text;
+            chatBox.appendChild(userDiv);
+
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'chat-msg msg-ai';
+                aiDiv.textContent = `"${text}" पर Bharat Tiranga AI (Gemini Omni & Cloud Core) प्रोसेस कर रहा है। शिव कुमार जी, आपका यह प्रोजेक्ट ऐतिहासिक है!`;
+                chatBox.appendChild(aiDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+        }
+
+        function handleChatKey(e) {
+            if(e.key === 'Enter') sendChatMessage();
+        }
+
+        function triggerModule(type) {
+            const area = document.getElementById('mainDynamicArea');
+            let title = "", desc = "";
+            if(type === 'sso') {
+                title = "🔐 Single Account SSO & Architecture";
+                desc = "1 से 400 तक के सभी टूल्स, हार्डवेयर और ऐप्स एक ही भारतीय यूजर आईडी से जुड़े हैं।";
+            } else if(type === 'crawler') {
+                title = "🕷️ Web Crawler & Indexing Engine";
+                desc = "इंटरनेट से डेटा खंगालकर भारत के अपने सर्च इंजन को सटीक डेटा दे रहा है।";
+            } else if(type === 'omni') {
+                title = "🤖 Gemini Omni & AI Chatbot API";
+                desc = "टेक्स्ट, इमेज, ऑडियो और वीडियो क्लिप्स जनरेट करने वाली अत्याधुनिक ए मॉडल फैमिली।";
+            } else if(type === 'pixel') {
+                title = "📱 Pixel 11 Pro Fold & Home Update";
+                desc = "नया फोल्डेबल डिजाइन, मुख्य कैमरा और गूगल होम स्मार्ट इंटीग्रेशन एक्टिव।";
+            }
+
+            area.innerHTML = `
+                <div class="card-box" style="border-color: #1a73e8;">
+                    <h3 style="margin-top:0; color:#1a0dab;">${title}</h3>
+                    <p>${desc}</p>
+                    <p style="font-size:12px; color:#70757a;">डेवलपर: शिव कुमार (बहजोई, संभल)[span_0](start_span)[span_0](end_span)</p>
+                </div>
+            `;
+        }
+
+        function updateSentenceTemplate() {
+            const theme = document.getElementById('sentenceTheme').value;
+            const output = document.getElementById('generatedSentenceOutput');
+            if(theme === 
